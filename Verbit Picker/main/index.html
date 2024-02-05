@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Custom Auto Refresh</title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+    <script defer src="../../scripts/main.js"></script>
+    <style>
+      body {
+        background-color: #f2f2f2;
+        font-family: Arial, sans-serif;
+        padding: 10px;
+      }
+
+      .container {
+        width: 180px;
+        height: 140px;
+        background-color: #ffffff;
+        padding: 10px;
+        border-radius: 8px;
+        margin: 0 auto;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.16);
+      }
+
+      .title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333333;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+
+      .input-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .interval-input {
+        width: 60px;
+        outline: none;
+        text-align: center;
+        border: 1px solid #cccccc;
+        background-color: #f2f2f2;
+        color: #333333;
+        border-radius: 4px;
+        font-family: Arial, sans-serif;
+        padding: 4px;
+      }
+
+      .interval-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5px;
+      }
+
+      .control-button {
+        width: 20px;
+        height: 20px;
+        background-color: #cccccc;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 12px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        margin: 0 5px;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .start-button {
+        border-radius: 20px 0 0 20px;
+        width: 64px;
+        padding-right: 5px;
+        background-color: #5cb85c;
+        color: #ffffff;
+        font-weight: bold;
+        border: none;
+        outline: none;
+        cursor: pointer;
+      }
+
+      .stop-button {
+        border-radius: 0 20px 20px 0;
+        width: 64px;
+        padding-left: 5px;
+        background-color: #d9534f;
+        color: #ffffff;
+        font-weight: bold;
+        border: none;
+        outline: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">Interval (sec):</div>
+      <div class="input-container">
+        <button class="control-button" id="decreaseInterval">-</button>
+        <input type="number" class="interval-input" id="interval" min="0" value="0">
+        <button class="control-button" id="increaseInterval">+</button>
+      </div>
+      <div class="interval-controls">
+        <div class="button-container">
+          <button class="start-button" id="startRefresh">Start</button>
+          <button class="stop-button" id="stopRefresh">Stop</button>
+        </div>
+      </div>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const intervalInput = document.getElementById('interval');
+        const decreaseButton = document.getElementById('decreaseInterval');
+        const increaseButton = document.getElementById('increaseInterval');
+
+        decreaseButton.addEventListener('click', function () {
+          decrementInterval();
+        });
+
+        increaseButton.addEventListener('click', function () {
+          incrementInterval();
+        });
+
+        function decrementInterval() {
+          let interval = parseInt(intervalInput.value);
+          interval = interval > 0 ? interval - 1 : 0;
+          intervalInput.value = interval;
+        }
+
+        function incrementInterval() {
+          let interval = parseInt(intervalInput.value);
+          interval++;
+          intervalInput.value = interval;
+        }
+      });
+    </script>
+  </body>
+</html>
